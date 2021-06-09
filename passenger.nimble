@@ -5,7 +5,7 @@ license = "MIT"
 
 when not defined(release):
   requires "https://github.com/disruptek/balls >= 3.0.0 & < 4.0.0"
-  requires "https://github.com/disruptek/gram >= 0.3.3 & < 1.0.0"
+  requires "https://github.com/disruptek/gram >= 0.3.6 & < 1.0.0"
   requires "https://github.com/disruptek/cps >= 0.0.25 & < 1.0.0"
 
 task test, "run tests for ci":

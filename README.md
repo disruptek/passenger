@@ -6,7 +6,13 @@
 [![License](https://img.shields.io/github/license/disruptek/passenger?style=flat)](#license)
 [![buy me a coffee](https://img.shields.io/badge/donate-buy%20me%20a%20coffee-orange.svg)](https://www.buymeacoffee.com/disruptek)
 
-A demonstration of CPS dispatch-fu.
+This dispatcher audits runtime behavior of any continuation.
+
+## Example
+
+A short looping control-flow graph of Zevv's goto example.
+
+![goto](docs/goto.png "goto example")
 
 ## Documentation
 See [the documentation for the passenger module](https://disruptek.github.io/passenger/passenger.html) as generated directly from the source.
