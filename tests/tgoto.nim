@@ -2,6 +2,7 @@ import std/tables
 
 import balls
 import gram
+import gram/graphviz
 import cps
 import passenger
 

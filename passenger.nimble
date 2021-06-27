@@ -5,8 +5,10 @@ license = "MIT"
 
 when not defined(release):
   requires "https://github.com/disruptek/balls >= 3.0.0 & < 4.0.0"
-requires "https://github.com/disruptek/gram >= 0.3.6 & < 1.0.0"
+requires "https://github.com/disruptek/gram >= 0.4.0 & < 1.0.0"
 requires "https://github.com/disruptek/cps >= 0.0.29 & < 1.0.0"
+requires "https://github.com/haxscramper/hasts < 1.0.0"
+requires "https://github.com/haxscramper/hmisc <= 0.11.10"
 
 task test, "run tests for ci":
   when defined(windows):
