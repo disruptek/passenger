@@ -9,8 +9,9 @@ import cps
 import gram
 
 type
+  Safe = uint
   Vertex = object
-    fn: Continuation.fn
+    fn: Safe
     name: string
     info: LineInfo
 
@@ -19,21 +20,23 @@ type
     entry: float
     cont: T
 
-var traced: Table[Continuation.fn, (string, LineInfo)]
+template saften(fn: typed): Safe = cast[uint](fn)
+
+var traced: Table[Safe, (string, LineInfo)]
 template trace*(c: typed; fun: string; info: LineInfo) =
-  if c.fn notin traced:
-    traced[c.fn] = (fun, info)
+  if saften(c.fn) notin traced:
+    traced[saften(c.fn)] = (fun, info)
 
 proc `$`*(v: Vertex): string =
   ## render the continuation leg
   try:
-    if v.fn in traced:
-      var (name, info) = traced[v.fn]
+    if saften(v.fn) in traced:
+      var (name, info) = traced[saften(v.fn)]
       name = name.split("_")[0]
       let fn = info.filename.lastPathPart
       result = "$#    ($# : $#)" % [ name, fn, $info.line ]
     else:
-      result = $(cast[int](v.fn))
+      result = $(saften(v.fn))
   except:
     result = "?"
 
@@ -49,7 +52,7 @@ proc passenger*[T: Continuation](c: T): (T, Graph[Vertex, Link[T], F]) =
   var g: Graph[Vertex, Link[T], F] = newGraph[Vertex, Link[T]]()
   var prior: Node[Vertex, Link[T]]
   trampolineIt c:
-    let vertex = g.add Vertex(fn: it.fn)
+    let vertex = g.add Vertex(fn: saften(it.fn))
     let link = Link[T](cont: c, entry: cpuTime())
     g.incl vertex
     if not prior.isNil:
